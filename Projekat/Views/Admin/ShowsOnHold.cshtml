@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "ShowsOnHold";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+</head>
+<body>
+    <h2>Shows on hold</h2>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Poster</th>
+        </tr>
+        @foreach (var s in ViewBag.showsOnHold)
+        {
+            <tr>
+                <td>
+                    @s.Name <br />
+                </td>
+
+                <td>@s.Type</td>
+                <td>@s.Start.ToString()</td>
+                <td>@s.Duration.ToString()</td>
+                <td>@s.Address.City, @s.Address.Street, @s.Address.ZipCode</td>
+                <td>@s.Price</td>
+                <td>
+                    @s.Rating &nbsp;
+                    <form action="~/Admin/Approve" method="post">
+                        <input type="hidden" name="ID" value="@s.Name" /><br />
+                        <input type="submit" value="Approve" />
+                    </form>
+                    <form action="~/Admin/Reject" method="post">
+                        <input type="hidden" name="ID" value="@s.Name" /><br />
+                        <input type="submit" value="Reject" />
+                    </form>
+                </td>
+
+                <td><img alt="poster" src="~/Content/@s.Picture" /></td>
+            </tr>
+
+        }
+    </table>
+
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Admin");
+    </div>
+
+</body>
+

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "BuyTicketForm";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+
+</head>
+<body>
+    <h2>Tickets for show: @ViewBag.showBuy.Name</h2><br />
+    <h3>Datum: @ViewBag.buyShow.Time</h3>
+    <br />
+    <br />
+    <form method="post" action="/Buyer/Confirmation">
+        <table>
+            <tr>
+                <td>Amount:</td>
+                <td><input type="text" value="1" name="amount" required /></td>
+            </tr>
+            <tr>
+                <td>Tip:</td>
+                <td>
+                    <select name="type" required>
+                        <option value="Regular">Regular</option>
+                        <option value="FanPit">FanPit</option>
+                        <option value="VIP">VIP</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><td><input type="hidden" value="@ViewBag.showBuy.Name" name="ID" /></td></tr>
+        </table>
+        <br />
+        <input type="submit" value="Continue" />
+    </form>
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Buyer");
+    </div>
+
+
+</body>
+

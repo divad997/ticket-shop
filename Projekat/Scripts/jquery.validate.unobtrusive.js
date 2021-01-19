@@ -364,7 +364,7 @@
     } else {
         // for backward compatibility, when the 'extension' validation method does not exist, such as with versions
         // of JQuery Validation plugin prior to 1.10, we should use the 'accept' method for
-        // validating the extension, and ignore mime-type validations as they are not supported.
+        // validating the extension, and ignore mName-type validations as they are not supported.
         adapters.addSingleVal("extension", "extension", "accept");
     }
 

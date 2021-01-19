@@ -1,0 +1,38 @@
+﻿body {
+    background-image: url("background.jpg");
+    background-size: cover;
+    text-align: center;
+}
+
+h2 {
+    align-content: center;
+    font-size: 40px;
+    background-color: aquamarine;
+}
+
+h1 {
+    align-content: center;
+    font-size: 40px;
+    background-color: aquamarine;
+}
+
+table {
+    width: 100%;
+    background-color: palegreen;
+    align-content: center;
+    border-bottom-color: black;
+    border: 2px solid black;
+}
+
+#prvo {
+    font-weight: bold;
+    font-size: larger;
+}
+
+tr {
+    height: 40px;
+}
+
+#pol {
+    background-color: aquamarine;
+}

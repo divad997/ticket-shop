@@ -6,6 +6,7 @@ using static Projekat.Models.Enums;
 
 namespace Projekat.Models
 {
+    [Serializable]
     public class User
     {
         public string Username { get; set; }

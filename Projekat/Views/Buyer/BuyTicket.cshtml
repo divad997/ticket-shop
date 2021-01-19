@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "BuyTicket";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+</head>
+<body>
+    <h2>Shows</h2>
+    <div>
+        <div>
+            <form method="post" action="~/Shows/Search">
+                <br />
+                Search:
+                <input type="text" placeholder="Search shows" name="search_value" value="" required />
+                <br />
+                <br />
+
+                &nbsp;
+                <select name="priceFrom" required>
+                    <option value="" selected disabled hidden>Minimum price</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="3000">3000</option>
+                    <option value="4000">4000</option>
+                    <option value="5000">5000</option>
+                    <option value="6000">6000</option>
+                    <option value="7000">7000</option>
+                    <option value="8000">8000</option>
+                    <option value="9000">9000</option>
+                    <option value="10000">10000</option>
+                </select>
+                &nbsp;
+                <select name="priceTo" required>
+                    <option value="" selected disabled hidden>Maximum price</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="3000">3000</option>
+                    <option value="4000">4000</option>
+                    <option value="5000">5000</option>
+                    <option value="6000">6000</option>
+                    <option value="7000">7000</option>
+                    <option value="8000">8000</option>
+                    <option value="9000">9000</option>
+                    <option value="10000">10000</option>
+                </select>
+                &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2020-12-31" value="" required />
+                &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2020-12-31" value="" required />
+                &nbsp;<input type="submit" value="Search" />
+            </form>
+        </div>
+        <br />
+        <div>
+            Sort search:
+            <form method="post" action="~/Shows/Sort">
+                &nbsp; <select name="sortType">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+                &nbsp; <select name="SortBy">
+                    <option value="name">Name</option>
+                    <option value="dateITime">Date and Time</option>
+                    <option value="price">Price</option>
+                    <option value="location">Location</option>
+                </select>
+                &nbsp;<input type="submit" value="Sort" />
+            </form>
+        </div>
+        <br />
+
+        <div>
+            Filter search:
+            <form method="post" action="~/Shows/Filter">
+                &nbsp;  <select name="type">
+                    <option value="">Choose manifestation type</option>
+                    <option value="concert">Concerts</option>
+                    <option value="festivals">Festivals</option>
+                    <option value="theater">Theater</option>
+                    <option value="cinema">Cinema</option>
+                </select>
+                &nbsp; <select name="availability">
+                    <option value="">Choose availability</option>
+                    <option value="available">Available tickets</option>
+                    <option value="unavailable">Unavailable tickets</option>
+                </select>
+                &nbsp; <input type="submit" value="Filter" />
+            </form>
+        </div>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Duration</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Poster</th>
+                <th></th>
+            </tr>
+            @foreach (var s in ViewBag.shows)
+            {
+                <tr>
+                    <td>
+                        @s.Name <br />
+                        <form action="~/Shows/ShowShow" method="post">
+                            <input type="hidden" name="ID" value="@s.Name" /><br />
+                            <input type="submit" value="Show show" />
+                        </form>
+                    </td>
+
+                    <td>@s.Type</td>
+                    <td>@s.Time</td>
+                    <td>@s.Duration</td>
+                    <td>@s.Address.Street, @s.Address.City, @s.Address.ZipCode</td>
+                    <td>@s.Price</td>
+                    <td>@s.Rating</td>
+                    <td><img alt="picture" src="~/Content/@s.Picture" /></td>
+                    <td>
+                        <form action="~/Buyer/BuyFormView" method="post">
+                            <input type="hidden" value="@s.Name" name="ID" />
+                            <input type="submit" value="Buy!" />
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        </table>
+
+    </div>
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Buyer");
+    </div>
+</body>

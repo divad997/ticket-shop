@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "AllComments";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+</head>
+<body>
+    <h2>Comments on hold</h2>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Type</th>
+            <th>Show name</th>
+            <th>Buyer</th>
+            <th>Comment</th>
+            <th>Rating</th>
+        </tr>
+        @foreach (var c in ViewBag.comments)
+        {
+            <tr>
+                <td>Approved</td>
+                <td>
+                    @c.Show <br />
+                </td>
+
+                <td>@c.Buyer</td>
+                <td>@c.Post</td>
+                <td>
+                    @c.Rating
+
+                </td>
+            </tr>
+        }
+        @foreach (var c in ViewBag.commentsRejected)
+        {
+            <tr>
+                <td>Rejected</td>
+                <td>
+                    @c.Show <br />
+                </td>
+
+                <td>@c.Buyer</td>
+                <td>@c.Post</td>
+                <td>
+                    @c.Rating &nbsp;
+
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="link">
+        @Html.ActionLink("<<Home", "Index", "Seller");
+    </div>
+</body>
+
+

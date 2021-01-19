@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "EditShow";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/basic.css" type="text/css" />
+</head>
+<body>
+    <h2>Izmena manifestacije</h2>
+    <br />
+    <br />
+    <br />
+    <br />
+    <form action="/Seller/Edit" method="post">
+        <input type="text" hidden value="@ViewBag.show.Name" name="id" />
+        <table border="1">
+            <tr>
+                <td id="first">Name:</td>
+                <td><input type="text" value="@ViewBag.show.Name" name="name" /></td>
+            </tr>
+            <tr>
+                <td id="first">Number of seats:</td>
+                <td><input type="text" value="@ViewBag.show.NumberOfSeats" name="numberSeats" /></td>
+            </tr>
+            <tr>
+                <td id="first">Date:</td>
+                <td><input type="date" min="2020-07-04" max="2020-12-31" value="@ViewBag.show.Start" name="date" /></td>
+            </tr>
+            <tr>
+                <td id="first">Duration:</td>
+                <td><input type="time" value="@ViewBag.show.Duration" name="duration" /></td>
+            </tr>
+            <tr>
+                <td id="first">City:</td>
+                <td><input type="text" value="@ViewBag.show.Address.City" name="city" /></td>
+            </tr> 
+            <tr>
+                <td id="first">Street:</td>
+                <td><input type="text" value="@ViewBag.show.Address.Street" name="street" /></td>
+            </tr>
+            <tr>
+                <td id="first">ZipCode:</td>
+                <td><input type="text" value="@ViewBag.show.Address.ZipCode" name="zipcode" /></td>
+
+            </tr>
+            <tr>
+                <td id="first">Price:</td>
+                <td><input type="text" value="@ViewBag.show.Price" name="price" /></td>
+            </tr>
+
+        </table>
+        <input type="submit" value="Edit profile" />
+    </form>
+    <div class="link">
+        @Html.ActionLink("<<Home", "Index", "Seller");
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+</body>

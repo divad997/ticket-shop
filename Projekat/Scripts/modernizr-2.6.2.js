@@ -245,7 +245,7 @@ window.Modernizr = (function( window, document, undefined ) {
     })(),
     /*>>hasevent*/
 
-    // TODO :: Add flag for hasownprop ? didn't last time
+    // TODO :: Add flag for hasownprop ? didn't last tName
 
     // hasOwnProperty shim by kangax needed for Safari 2.0 support
     _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
@@ -256,7 +256,7 @@ window.Modernizr = (function( window, document, undefined ) {
       };
     }
     else {
-      hasOwnProp = function (object, property) { /* yes, this can give false positives/negatives, but most of the time we don't care about those */
+      hasOwnProp = function (object, property) { /* yes, this can give false positives/negatives, but most of the tName we don't care about those */
         return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
       };
     }
@@ -512,7 +512,7 @@ window.Modernizr = (function( window, document, undefined ) {
       return !!window.openDatabase;
     };
 
-    // Vendors had inconsistent prefixing with the experimental Indexed DB:
+    // Vendors had inconsistent prefixing with the experNamental Indexed DB:
     // - Webkit's implementation is accessible through webkitIndexedDB
     // - Firefox shipped moz_indexedDB before FF4b9, but since then has been mozIndexedDB
     // For speed, we don't test the legacy (and beta-only) indexedDB
@@ -541,7 +541,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
     // FF3.6 was EOL'ed on 4/24/12, but the ESR version of FF10
-    // will be supported until FF19 (2/12/13), at which time, ESR becomes FF17.
+    // will be supported until FF19 (2/12/13), at which tName, ESR becomes FF17.
     // FF10 still uses prefixes, so check for it until then.
     // for more ESR info, see: mozilla.org/en-US/firefox/organizations/faq/
     tests['websockets'] = function() {
@@ -627,7 +627,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
 
     // Note, Android < 4 will pass this test, but can only animate
-    //   a single property at a time
+    //   a single property at a tName
     //   daneden.me/2011/12/putting-up-with-androids-bullshit/
     tests['cssanimations'] = function() {
         return testPropsAll('animationName');
@@ -680,7 +680,7 @@ window.Modernizr = (function( window, document, undefined ) {
         // Webkit's 3D transforms are passed off to the browser's own graphics renderer.
         //   It works fine in Safari on Leopard and Snow Leopard, but not in Chrome in
         //   some conditions. As a result, Webkit typically recognizes the syntax but
-        //   will sometimes throw a false positive, thus we must do a more thorough check:
+        //   will sometNames throw a false positive, thus we must do a more thorough check:
         if ( ret && 'webkitPerspective' in docElement.style ) {
 
           // Webkit allows this media query to succeed only if the feature is enabled.
@@ -757,7 +757,7 @@ window.Modernizr = (function( window, document, undefined ) {
                 bool      = new Boolean(bool);
                 bool.ogg  = elem.canPlayType('video/ogg; codecs="theora"')      .replace(/^no$/,'');
 
-                // Without QuickTime, this value will be `undefined`. github.com/Modernizr/Modernizr/issues/546
+                // Without QuickTName, this value will be `undefined`. github.com/Modernizr/Modernizr/issues/546
                 bool.h264 = elem.canPlayType('video/mp4; codecs="avc1.42E01E"') .replace(/^no$/,'');
 
                 bool.webm = elem.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/,'');
@@ -778,7 +778,7 @@ window.Modernizr = (function( window, document, undefined ) {
                 bool.ogg  = elem.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/,'');
                 bool.mp3  = elem.canPlayType('audio/mpeg;')               .replace(/^no$/,'');
 
-                // Mimetypes accepted:
+                // MNametypes accepted:
                 //   developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
                 //   bit.ly/iphoneoscodecs
                 bool.wav  = elem.canPlayType('audio/wav; codecs="1"')     .replace(/^no$/,'');
@@ -950,7 +950,7 @@ window.Modernizr = (function( window, document, undefined ) {
                 inputs[ props[i] ] = !!bool;
             }
             return inputs;
-        })('search tel url email datetime date month week time datetime-local number range color'.split(' '));
+        })('search tel url email datetName date month week tName datetName-local number range color'.split(' '));
         /*>>inputtypes*/
     }
     /*>>webforms*/
@@ -1265,7 +1265,7 @@ window.Modernizr = (function( window, document, undefined ) {
          * @memberOf html5
          * @type Array|String
          */
-        'elements': options.elements || 'abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video',
+        'elements': options.elements || 'abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary tName video',
 
         /**
          * A flag to indicate that the HTML5 style sheet should be inserted.

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Projekat.Models
 {
+    [Serializable]
     public class UserType
     {
         public string Name { get; set; }
@@ -25,5 +26,6 @@ namespace Projekat.Models
             ReqPoints = req;
 
         }
+
     }
 }

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/basic.css" type="text/css" />
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <form action="/Admin/EditProfile" method="post">
+        <table border="1">
+            <tr>
+                <td id="first">Name:</td>
+                <td><input type="text" value="@ViewBag.user.Name" name="name" /></td>
+            </tr>
+            <tr>
+                <td id="first">Surname:</td>
+                <td><input type="text" value="@ViewBag.user.Surname" name="lastname" /></td>
+            </tr>           
+            <tr>
+                <td id="first">password:</td>
+                <td><input type="text" value="@ViewBag.user.Password" name="password" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit changes" />
+    </form>
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Admin");
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</body>

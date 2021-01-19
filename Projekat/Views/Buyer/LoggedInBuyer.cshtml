@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "LoggedInBuyer";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css">
+</head>
+<body>
+
+    <br />
+    <br />
+    <div style="float:left;font-size:large;" class="Alink">
+        @Html.ActionLink("Buy a Ticket", "BuyTicketView", "Buyer")
+    </div>
+    <br />
+    <br />
+    <div style="float:left;font-size:large;" class="Alink">
+        @Html.ActionLink("My Profile", "MyProfile", "Buyer")
+    </div>
+    <br />
+    <br />
+    <div style="float:left;font-size:large;" class="Alink">
+        @Html.ActionLink("My tickets", "BoughtTicketsView", "Buyer")
+    </div>
+    <br />
+    <br />
+    <div style="float:left;font-size:large;" class="link">
+        @Html.ActionLink("Log Out", "Logout", "Buyer")
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    
+</body>

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "AddShow";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css">
+    <script type="text/javascript">
+        function onRequired() {
+            var fieldForm = document.getElementsByName("name")[0].value;
+            var fieldForm1 = document.getElementsByName("numberSpots")[0].value;
+            var fieldForm2 = document.getElementsByName("date")[0].value;
+            var fieldForm3 = document.getElementsByName("time")[0].value;
+            var fieldForm4 = document.getElementsByName("city")[0].value;
+            var fieldForm5 = document.getElementsByName("street")[0].value;
+            var fieldForm6 = document.getElementsByName("zipCode")[0].value;
+            if (fieldForm == "" || fieldForm1 == "" || fieldForm2 == "" || fieldForm3 == "" || fieldForm4 == "" || fieldForm5 == "" || fieldForm6 == "") {
+                document.getElementById("message").innerHTML = "All fields must be filled";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h3>Add new Show</h3>
+    <br />
+    <form method="post" action="~/Seller/NewShow" enctype="multipart/form-data" onsubmit="return onRequired()">
+        <input type="text" placeholder="Show name" name="name" required /><br /><br />
+        <select name="type" required>
+            <option value="" selected disabled>Choose a type</option>
+            <option value="concert">Concert</option>
+            <option value="Festival">Festival</option>
+            <option value="Theatre">Theatre</option>
+            <option value="Cinema">Cinema</option>
+        </select> <br /><br />
+        <input type="text" placeholder="Number of seats" name="numberSpots" required /><br /><br />
+        <input type="date" min="2020-07-04" max="2020-12-31" name="date" value="2020-07-04" required /><br /><br />
+        <input type="time" name="time" value="21:00" required /><br /><br />
+        <input type="text" name="cena" placeholder="Price" required /><br /><br />
+        <input type="text" name="city" placeholder="City" required /><br /><br />
+        <input type="text" name="street" placeholder="Street" required /><br /><br />
+        <input type="text" name="zipCode" placeholder="ZipCode" required /><br /><br />
+        <input name="slika" type="file" placeholder="Add picture" required /><br /><br />
+
+        <input type="submit" value="Add Show" /><br />
+    </form>
+    <div class="link">
+        @Html.ActionLink("<<Home", "Index", "Seller");
+    </div>
+
+</body>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<shows>
+  <show>
+    <name>Lord of the Rings: The Two Towers</name>
+    <type>Movie</type>
+    <number>35</number>
+    <start>9/30/2020 21:00:00 PM</start>
+    <price>3</price>
+    <status>Active</status>
+    <address>Bulevar Mihajla Pupina 3, Novi Sad 21000</address>
+    <image>App_Data/Images/twotowers.jpg</image>
+  </show>
+</shows> 

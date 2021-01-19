@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,12 +121,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BuyerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
+    <Compile Include="Controllers\ShowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\User.cs" />
@@ -135,14 +143,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\shows.xml" />
+    <Content Include="App_Data\users.xml" />
+    <Content Include="Content\background.jpg" />
+    <Content Include="Content\basic.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\concert-ticket.png" />
+    <Content Include="Content\Home.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -155,7 +175,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -166,12 +188,47 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\UserNoExist.cshtml" />
+    <Content Include="Views\Home\UserExist.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Admin\LoggedInAdmin.cshtml" />
+    <Content Include="Views\Seller\LoggedInSeller.cshtml" />
+    <Content Include="Views\Buyer\LoggedInBuyer.cshtml" />
+    <Content Include="Views\Admin\MyProfile.cshtml" />
+    <Content Include="Views\Admin\AddSeller.cshtml" />
+    <Content Include="Views\Admin\SellerCreated.cshtml" />
+    <Content Include="Views\Admin\ShowUsers.cshtml" />
+    <Content Include="Views\Admin\ShowsOnHold.cshtml" />
+    <Content Include="Views\Admin\ShowTickets.cshtml" />
+    <Content Include="Views\Admin\AllComments.cshtml" />
+    <Content Include="Views\Buyer\MyProfile.cshtml" />
+    <Content Include="Views\Buyer\BuyTicket.cshtml" />
+    <Content Include="Views\Buyer\NoTickets.cshtml" />
+    <Content Include="Views\Buyer\Confirmation.cshtml" />
+    <Content Include="Views\Buyer\SuccessfulBuy.cshtml" />
+    <Content Include="Views\Buyer\ShowBoughtTickets.cshtml" />
+    <Content Include="Views\Buyer\Review.cshtml" />
+    <Content Include="Views\Buyer\SuccessfulReview.cshtml" />
+    <Content Include="Views\Buyer\BuyTicketForm.cshtml" />
+    <Content Include="Views\Shows\ShowShows.cshtml" />
+    <Content Include="Views\Shows\ShowShow.cshtml" />
+    <Content Include="Views\Seller\MyProfile.cshtml" />
+    <Content Include="Views\Seller\AddShow.cshtml" />
+    <Content Include="Views\Seller\ShowExist.cshtml" />
+    <Content Include="Views\Seller\EditShow.cshtml" />
+    <Content Include="Views\Seller\Shows.cshtml" />
+    <Content Include="Views\Seller\AllComments.cshtml" />
+    <Content Include="Views\Seller\ApproveComment.cshtml" />
+    <Content Include="Views\Seller\NoCommentsOnHold.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Images\" />
+    <Folder Include="Views\Buyers\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Register\" />
+    <Folder Include="Views\Show\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

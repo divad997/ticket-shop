@@ -67,7 +67,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var called = false, $el = this
     $(this).one($.support.transition.end, function () { called = true })
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
-    setTimeout(callback, duration)
+    setTNameout(callback, duration)
     return this
   }
 
@@ -223,7 +223,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     $el[val](data[state] || this.options[state])
 
     // push to event loop to allow forms to submit
-    setTimeout(function () {
+    setTNameout(function () {
       state == 'loadingText' ?
         $el.addClass(d).attr(d, d) :
         $el.removeClass(d).removeAttr(d);
@@ -427,7 +427,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
           $next.removeClass([type, direction].join(' ')).addClass('active')
           $active.removeClass(['active', direction].join(' '))
           that.sliding = false
-          setTimeout(function () { that.$element.trigger('slid') }, 0)
+          setTNameout(function () { that.$element.trigger('slid') }, 0)
         })
         .emulateTransitionEnd(600)
     } else {
@@ -542,7 +542,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     toggle: true
   }
 
-  Collapse.prototype.dimension = function () {
+  Collapse.prototype.dNamension = function () {
     var hasWidth = this.$element.hasClass('width')
     return hasWidth ? 'width' : 'height'
   }
@@ -563,12 +563,12 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       hasData || actives.data('bs.collapse', null)
     }
 
-    var dimension = this.dimension()
+    var dNamension = this.dNamension()
 
     this.$element
       .removeClass('collapse')
       .addClass('collapsing')
-      [dimension](0)
+      [dNamension](0)
 
     this.transitioning = 1
 
@@ -576,19 +576,19 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       this.$element
         .removeClass('collapsing')
         .addClass('in')
-        [dimension]('auto')
+        [dNamension]('auto')
       this.transitioning = 0
       this.$element.trigger('shown.bs.collapse')
     }
 
     if (!$.support.transition) return complete.call(this)
 
-    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+    var scrollSize = $.camelCase(['scroll', dNamension].join('-'))
 
     this.$element
       .one($.support.transition.end, $.proxy(complete, this))
       .emulateTransitionEnd(350)
-      [dimension](this.$element[0][scrollSize])
+      [dNamension](this.$element[0][scrollSize])
   }
 
   Collapse.prototype.hide = function () {
@@ -598,10 +598,10 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
 
-    var dimension = this.dimension()
+    var dNamension = this.dNamension()
 
     this.$element
-      [dimension](this.$element[dimension]())
+      [dNamension](this.$element[dNamension]())
       [0].offsetHeight
 
     this.$element
@@ -622,7 +622,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     if (!$.support.transition) return complete.call(this)
 
     this.$element
-      [dimension](0)
+      [dNamension](0)
       .one($.support.transition.end, $.proxy(complete, this))
       .emulateTransitionEnd(350)
   }
@@ -1116,7 +1116,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     this.type       =
     this.options    =
     this.enabled    =
-    this.timeout    =
+    this.tNameout    =
     this.hoverState =
     this.$element   = null
 
@@ -1194,13 +1194,13 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
-    clearTimeout(self.timeout)
+    clearTNameout(self.tNameout)
 
     self.hoverState = 'in'
 
     if (!self.options.delay || !self.options.delay.show) return self.show()
 
-    self.timeout = setTimeout(function () {
+    self.tNameout = setTNameout(function () {
       if (self.hoverState == 'in') self.show()
     }, self.options.delay.show)
   }
@@ -1209,13 +1209,13 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
-    clearTimeout(self.timeout)
+    clearTNameout(self.tNameout)
 
     self.hoverState = 'out'
 
     if (!self.options.delay || !self.options.delay.hide) return self.hide()
 
-    self.timeout = setTimeout(function () {
+    self.tNameout = setTNameout(function () {
       if (self.hoverState == 'out') self.hide()
     }, self.options.delay.hide)
   }
@@ -1331,8 +1331,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     if (replace) $tip.offset(offset)
   }
 
-  Tooltip.prototype.replaceArrow = function(delta, dimension, position) {
-    this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + "%") : '')
+  Tooltip.prototype.replaceArrow = function(delta, dNamension, position) {
+    this.arrow().css(position, delta ? (50 * (1 - delta / dNamension) + "%") : '')
   }
 
   Tooltip.prototype.setContent = function () {
@@ -1931,7 +1931,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   }
 
   Affix.prototype.checkPositionWithEventLoop = function () {
-    setTimeout($.proxy(this.checkPosition, this), 1)
+    setTNameout($.proxy(this.checkPosition, this), 1)
   }
 
   Affix.prototype.checkPosition = function () {

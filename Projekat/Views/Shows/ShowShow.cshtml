@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "ShowShow";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+</head>
+<body>
+    <h2>Detalji manifestacije</h2>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Duration</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Poster</th>
+            </tr>
+            <tr>
+                
+                <td @ViewBag.showShows.Name
+                <td>@ViewBag.showShows.Type</td>
+                <td>@ViewBag.showShows.Start</td>
+                <td>@ViewBag.showShows.Duration</td>
+                <td>@ViewBag.showShows.Address.City, @ViewBag.showShows.Address.Street, @ViewBag.showShows.Address.ZipCode</td>
+                <td>@ViewBag.showShows.Price</td>
+                <td>@ViewBag.showShows.CalculateRating()</td>
+
+
+                <td><img alt="Show poster" src="~/Content/@ViewBag.showShows.Picture" /></td>
+
+            </tr>
+        </table>
+    </div>
+</body>
+

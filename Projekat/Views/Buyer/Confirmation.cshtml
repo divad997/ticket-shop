@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+    <script>
+        function submitResult() {
+            if (confirm("Are you sure you want to confirm the purchase: \nAmount: @ViewBag.ticketnumber \nDiscount:@ViewBag.discount % \nCena:@ViewBag.price \nTip:@ViewBag.type") == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="~/Buyer/Buy" method="post" onsubmit="return submitResult();">
+        <br />
+        <br />
+        <br />
+        <table>
+            <tr>
+                <td>Show:</td>
+                <td>@ViewBag.showBuy.Name <input type="hidden" value="@ViewBag.showBuy.Name" name="ID" /></td>
+            </tr>
+            <tr>
+                <td>Amount of tickets:</td>
+                <td>@ViewBag.ticketnumber <input type="hidden" value="@ViewBag.ticketnumber" name="ticketNumber" /></td>
+            </tr>
+            <tr>
+                <td>Ticket type:</td>
+                <td>@ViewBag.type<input type="hidden" value="@ViewBag.type" name="type" /></td>
+            </tr>
+            <tr>
+                <td>Discount:</td>
+                <td>@ViewBag.discount %<input type="hidden" value="@ViewBag.discount" name="type" /></td>
+            </tr>
+            <tr>
+                <td>Total price:</td>
+                <td>@ViewBag.price<input type="hidden" value="@ViewBag.price" name="price" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="Buy" />
+    </form>
+</body>
+

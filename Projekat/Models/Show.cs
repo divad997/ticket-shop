@@ -7,6 +7,7 @@ using static Projekat.Models.Enums;
 
 namespace Projekat.Models
 {
+    [Serializable]
     public class Show
     {
         public string Name { get; set; }
@@ -17,20 +18,26 @@ namespace Projekat.Models
 
         public DateTime Start { get; set; }
 
+        public TimeSpan Duration { get; set; }
+
         public float Price { get; set; }
 
         public ShowStatus Status { get; set; }
 
         public Address Address { get; set; }
 
-        public Image Picture { get; set; }
+        public float Rating { get; set; }
+
+        public List<Comment> Comments { get; set; }
+
+        public string Picture { get; set; }
 
         public Show()
         {
 
         }
 
-        public Show(string name, ShowType type, int number, DateTime start, float price, ShowStatus status, Address address, Image picture)
+        public Show(string name, ShowType type, int number, DateTime start, float price, ShowStatus status, Address address, string picture)
         {
             Name = name;
             Type = type;
@@ -39,7 +46,26 @@ namespace Projekat.Models
             Price = price;
             Status = status;
             Address = address;
+            Comments = new List<Comment>();
             Picture = picture;
+        }
+
+        public float CalculateRating()
+        {
+            Database.ReadData();
+            int i = 0;
+            int value = 0;
+            
+            foreach (Comment c in Database.comments)
+            {
+                if (c.Show == this.Name)
+                {
+                    value += c.Rating;
+                    i++;
+                }
+            }
+            value = value / i;
+            return value;
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "SuccessfulReview";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css">
+</head>
+<body>
+    <h2>Successfully reviewed!</h2>
+    <div class="link">
+        @Html.ActionLink(">>Check bought tickets", "BoughtTicketsView", "Buyer");
+    </div>
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Buyer");
+    </div>
+</body>
+
+

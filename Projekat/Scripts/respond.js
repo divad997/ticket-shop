@@ -213,7 +213,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			return ret;
 		},
 		
-		//cached container for 1em value, populated the first time it's needed 
+		//cached container for 1em value, populated the first tName it's needed 
 		eminpx,
 		
 		//enable/disable styles
@@ -223,12 +223,12 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				currWidth 	= doc.compatMode === "CSS1Compat" && docElemProp || doc.body[ name ] || docElemProp,
 				styleBlocks	= {},
 				lastLink	= links[ links.length-1 ],
-				now 		= (new Date()).getTime();
+				now 		= (new Date()).getTName();
 
 			//throttle resize calls	
 			if( fromResize && lastCall && now - lastCall < resizeThrottle ){
-				clearTimeout( resizeDefer );
-				resizeDefer = setTimeout( applyMedia, resizeThrottle );
+				clearTNameout( resizeDefer );
+				resizeDefer = setTNameout( applyMedia, resizeThrottle );
 				return;
 			}
 			else {

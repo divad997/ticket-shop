@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Projekat.Models
 {
+    [Serializable]
     public class Comment
     {
         public string Buyer { get; set; }

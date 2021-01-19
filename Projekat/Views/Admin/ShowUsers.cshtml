@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "ShowUsers";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+</head>
+<body>
+    <div>
+        <div>
+            <form method="post" action="~/Admin/Search">
+                <br />
+                <input type="text" placeholder="Search for a user" name="search_value" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+        <br />
+        <div>
+            Sort 
+            <form method="post" action="~/Admin/Sort">
+                <select name="sortType">
+                    <option value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+                <select name="sortBy">
+                    <option value="name">name</option>
+                    <option value="surname">Surname</option>
+                    <option value="username">Username</option>
+                    <option value="points">Number of points</option>
+                </select>
+                <input type="submit" value="Sort" />
+            </form>
+        </div>
+        <br />
+        <div>
+            Filter:
+            <form method="post" action="~/Admin/Filter">
+                <select name="role">
+                    <option value="">Pick a role</option>
+                    <option value="Buyer">Buyer</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Admin">Admin</option>
+                </select>
+                <select name="type">
+                    <option value="">Choose user type</option>             
+                    <option value="Bronze">Bronze</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                </select>
+                <input type="submit" value="Filter" />
+            </form>
+        </div>
+        <br />
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Date of birth</th>               
+                <th>Role</th>
+                <th>User type</th>
+
+            </tr>
+            @foreach (var u in ViewBag.users)
+            {
+                <tr>
+                    <td>@u.Name</td>
+                    <td>@u.Surname</td>
+                    <td>@u.Username</td>
+                    <td>@u.Password</td>
+                    <td>@u.Birthday</td>
+                    <td>@u.Role</td>
+                    <td>@u.Type.Name</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Admin");
+    </div>
+</body>
+

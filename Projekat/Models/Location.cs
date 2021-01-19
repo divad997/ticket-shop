@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Projekat.Models
 {
+    [Serializable]
     public class Location
     {
         public float Height { get; set; }

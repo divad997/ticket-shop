@@ -350,8 +350,8 @@ $.extend($.validator, {
 			$(this.currentForm)
 				.validateDelegate(":text, [type='password'], [type='file'], select, textarea, " +
 					"[type='number'], [type='search'] ,[type='tel'], [type='url'], " +
-					"[type='email'], [type='datetime'], [type='date'], [type='month'], " +
-					"[type='week'], [type='time'], [type='datetime-local'], " +
+					"[type='email'], [type='datetName'], [type='date'], [type='month'], " +
+					"[type='week'], [type='tName'], [type='datetName-local'], " +
 					"[type='range'], [type='color'] ",
 					"focusin focusout keyup", delegate)
 				.validateDelegate("[type='radio'], [type='checkbox'], select, option", "click", delegate);
@@ -795,7 +795,7 @@ $.extend($.validator, {
 
 		stopRequest: function( element, valid ) {
 			this.pendingRequest--;
-			// sometimes synchronization fails, make sure pendingRequest is never < 0
+			// sometNames synchronization fails, make sure pendingRequest is never < 0
 			if ( this.pendingRequest < 0 ) {
 				this.pendingRequest = 0;
 			}

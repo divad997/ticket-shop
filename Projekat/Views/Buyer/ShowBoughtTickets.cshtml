@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "ShowBoughtTickets";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
+</head>
+<body>
+    <br />
+    <br />
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Buyer");
+    </div>
+    <div>
+        <form method="post" action="~/Buyer/Search">
+            <br />
+            Pretraži:
+            <input type="text" placeholder="Search ticket" name="search_value" value="" required />
+            <br />
+            <br />
+
+            &nbsp;
+            <select name="priceFrom" required>
+                <option value="" selected disabled hidden>Minimum price</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="3000">3000</option>
+                <option value="4000">4000</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="15000">15000</option>
+                <option value="20000">20000</option>
+            </select>
+            &nbsp;
+            <select name="priceTo" required>
+                <option value="" selected disabled hidden>Maximum price</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+                <option value="15000">15000</option>
+                <option value="20000">20000</option>
+                <option value="25000">25000</option>
+                <option value="30000">30000</option>
+                <option value="35000">35000</option>
+                <option value="100000">100000</option>
+            </select>
+            &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2020-12-31" value="" required />
+            &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2020-12-31" value="" required />
+            &nbsp;<input type="submit" value="Search" />
+        </form>
+    </div>
+    <br />
+    <div>
+        Sort search:
+        <form method="post" action="~/Buyer/Sort">
+            &nbsp; <select name="sortType">
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
+            &nbsp; <select name="sortBy">
+                <option value="Name">Name</option>
+                <option value="dateITime">Date and Time</option>
+                <option value="price">Price</option>
+            </select>
+            &nbsp;<input type="submit" value="Sort" />
+        </form>
+    </div>
+    <br />
+    <div>
+        Filter search:
+        <form method="post" action="~/Buyer/Filter">
+            &nbsp;  <select name="type">
+                <option value="">Choose ticket type</option>
+                <option value="Regular">Regular</option>
+                <option value="FanPit">FanPit</option>
+                <option value="VIP">VIP</option>
+            </select>
+            &nbsp; <select name="status">
+                <option value="">Choose show status</option>
+                <option value="active">Active tickets</option>
+                <option value="inactive">Inactive tickets</option>
+            </select>
+            &nbsp; <input type="submit" value="Filter" />
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>ID:</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Total Price</th>
+            <th>Amount</th>
+            <th>Ticket type</th>
+            <th></th>
+
+        </tr>
+        @foreach (var t in ViewBag.tickets)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.Name</td>
+                <td>@t.Time</td>
+                <td>@t.Duration</td>
+                <td>@t.TotalPrice</td>
+                <td>@t.Amount</td>
+                <td>@t.Type</td>
+                <td>
+                    <form action="/Buyer/ReviewView" method="post">
+                        <input type="submit" value="Add Review" />
+                        <input type="hidden" value="@t.Show.Name" name="IDShow" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="link">
+        @Html.ActionLink(">>Home", "Index", "Buyer");
+    </div>
+</body>
