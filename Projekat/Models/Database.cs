@@ -58,8 +58,8 @@ namespace Projekat.Models
                 users.Add(seller);
                 users.Add(user);
 
-                Show m1 = new Show("Lord of the Rings: Two Towers", Enums.ShowType.Cinema, 25, DateTime.Now.AddHours(4), 350, Enums.ShowStatus.Active, new Address("Bulevar Mihajla Pupina 3", "Novi Sad", 21000), "twotower.jpg");
-                Show f1 = new Show("Exit:2021", Enums.ShowType.Festival, 10000, new DateTime(2021, 7, 14, 19, 0, 0), 5999, Enums.ShowStatus.Active, new Address("Petrovaradin Fortress", "Novi Sad", 21000), "egzit.jpg");
+                Show m1 = new Show("Lord of the Rings: Two Towers", Enums.ShowType.Cinema, 25, DateTime.Now.AddHours(4), 350, Enums.ShowStatus.Active, new Address("Bulevar Mihajla Pupina 3", "Novi Sad", 21000), "twotowers.jpg");
+                Show f1 = new Show("Exit:2021", Enums.ShowType.Festival, 10000, new DateTime(2021, 7, 14, 19, 0, 0), 5999, Enums.ShowStatus.Active, new Address("Petrovaradin Fortress", "Novi Sad", 21000), "exit.jpg");
                 Show c1 = new Show("The Weeknd", Enums.ShowType.Concert, 3, DateTime.Now.AddDays(1), 5999, Enums.ShowStatus.Active, new Address("Stark Arena", "Beograd", 11000), "theweeknd.jpg");
                 Show t1 = new Show("The Barber of Seville", Enums.ShowType.Theatre, 10, DateTime.Now.AddDays(2), 1200, Enums.ShowStatus.Active, new Address("Pozorisni Trg 1", "Beograd", 11000), "barber.jpg");
                 Show m2 = new Show("Lord of the Rings: Fellowshit of the Ring", Enums.ShowType.Cinema, 25, DateTime.Now.AddHours(4), 350, Enums.ShowStatus.Active, new Address("Bulevar Mihajla Pupina 3", "Novi Sad", 21000), "\twotower.jpg");
