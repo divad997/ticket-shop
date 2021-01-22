@@ -22,29 +22,145 @@ namespace Projekat.Controllers
         {
             List<Show> searchedShows = new List<Show>();
 
+            DateTime dateFrom;
+            DateTime dateTo;
+
+            int priceFrom;
+            int priceTo;
+
+            int casee = 1;
+
+            bool name, date1, date2, price1, price2;
+
+            name = Request["search_value"] != "";
+            date1 = DateTime.TryParse(Request["dateFrom"], out dateFrom);
+            date2 = DateTime.TryParse(Request["dateTo"], out dateTo);
+            price1 = Int32.TryParse(Request["priceFrom"], out priceFrom);
+            price2 = Int32.TryParse(Request["priceTo"], out priceTo);
+
+            if (name || (date1 && date2) || (price1 && price2))
+            {
+                if (name && (date1 && date2) && (price1 && price2))
+                    casee = 2;
+                else if (name && (date1 && date2))
+                    casee = 3;
+                else if (name && (price1 && price2))
+                    casee = 4;
+                else if ((date1 && date2) && (price1 && price2))
+                    casee = 5;
+                else if (name)
+                    casee = 6;
+                else if (date1 && date2)
+                    casee = 7;
+                else if (price1 && price2)
+                    casee = 8;
+            }
+            else
+                casee = 1;
+
+
+
             foreach (Show s in Database.shows)
             {
                 DateTime date_shows = s.Start;
-                DateTime dateFrom = DateTime.Parse(Request["dateFrom"]);
-                DateTime dateTo = DateTime.Parse(Request["dateTo"]);
 
-                int poredjenje_dateaFrom = DateTime.Compare(date_shows, dateFrom); //TREBA DA BUDE 0 ILI 1
-                int poredjenje_dateaTo = DateTime.Compare(date_shows, dateTo); //TREBA DA BUDE 0 ILI -1
+                int compare_dateFrom = DateTime.Compare(date_shows, dateFrom);
+                int compare_dateTo = DateTime.Compare(date_shows, dateTo);
 
-
-                int priceFrom = Int32.Parse(Request["priceFrom"]);
-                int priceTo = Int32.Parse(Request["priceTo"]);
-
-                if ((poredjenje_dateaFrom >= 0) && (poredjenje_dateaTo <= 0) && (s.Price >= priceFrom) && (s.Price <= priceTo))
+                switch (casee)
                 {
-                    if ((s.Name.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.City.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.Street.ToUpper().Equals(Request["search_value"].ToUpper())))
-                    {
-                        if (!searchedShows.Contains(s))
-                        {
-                            searchedShows.Add(s);
-                        }
-                    }
+                    case 1:
 
+                        ViewBag.shows = Database.shows;
+                        break;
+
+                    case 2:
+
+                        if ((s.Name.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.City.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.Street.ToUpper().Equals(Request["search_value"].ToUpper())))
+                        {
+                            if ((compare_dateFrom >= 0) && (compare_dateTo <= 0) && (s.Price >= priceFrom) && (s.Price <= priceTo))
+                            {
+                                if (!searchedShows.Contains(s))
+                                {
+                                    searchedShows.Add(s);
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+
+                        if ((s.Name.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.City.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.Street.ToUpper().Equals(Request["search_value"].ToUpper())))
+                        {
+                            if ((compare_dateFrom >= 0) && (compare_dateTo <= 0))
+                            {
+                                if (!searchedShows.Contains(s))
+                                {
+                                    searchedShows.Add(s);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 4:
+
+                        if ((s.Name.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.City.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.Street.ToUpper().Equals(Request["search_value"].ToUpper())))
+                        {
+                            if ((s.Price >= priceFrom) && (s.Price <= priceTo))
+                            {
+                                if (!searchedShows.Contains(s))
+                                {
+                                    searchedShows.Add(s);
+                                }
+                            }
+                        }
+                        break;
+
+                    case 5:
+
+                        if ((compare_dateFrom >= 0) && (compare_dateTo <= 0) && (s.Price >= priceFrom) && (s.Price <= priceTo))
+                        {
+                            if (!searchedShows.Contains(s))
+                            {
+                                searchedShows.Add(s);
+                            }
+                        }
+                        break;
+
+                    case 6:
+
+                        if ((s.Name.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.City.ToUpper().Equals(Request["search_value"].ToUpper())) || (s.Address.Street.ToUpper().Equals(Request["search_value"].ToUpper())))
+                        {
+                            if (!searchedShows.Contains(s))
+                            {
+                                searchedShows.Add(s);
+                            }
+                        }
+                        break;
+
+                    case 7:
+
+                        if ((compare_dateFrom >= 0) && (compare_dateTo <= 0))
+                        {
+                            if (!searchedShows.Contains(s))
+                            {
+                                searchedShows.Add(s);
+                            }
+                        }
+                        break;
+
+                    case 8:
+
+                        if ((s.Price >= priceFrom) && (s.Price <= priceTo))
+                        {
+                            if (!searchedShows.Contains(s))
+                            {
+                                searchedShows.Add(s);
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
                 }
 
             }
@@ -58,7 +174,7 @@ namespace Projekat.Controllers
             List<Show> shows = Database.shows;
             List<Show> sortedShows = new List<Show>();
 
-            if (Request["sortBy"].Equals("naziv"))
+            if (Request["sortBy"].Equals("name"))
             {
                 if (Request["sortType"].Equals("ascending"))
                 {
@@ -69,7 +185,7 @@ namespace Projekat.Controllers
                     sortedShows = shows.OrderByDescending(o => o.Name).ToList();
                 }
             }
-            else if (Request["sortBy"].Equals("dateIVreme"))
+            else if (Request["sortBy"].Equals("dateITime"))
             {
                 if (Request["sortType"].Equals("ascending"))
                 {
@@ -109,100 +225,100 @@ namespace Projekat.Controllers
             return View("~/Views/Shows/ShowShows.cshtml");
         }
 
-        public ActionResult Filtriraj()
+        public ActionResult Filter()
         {
             List<Show> shows = Database.shows;
-            List<Show> filtrirane_shows = new List<Show>();
+            List<Show> filtered_shows = new List<Show>();
 
             if ((!Request["type"].Equals("")) && (!Request["availability"].Equals("")))
             {
                 if (Request["availability"].Equals("available"))
                 {
-                    if (Request["type"].Equals("Concert"))
+                    if (Request["type"].Equals("concert"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Active) && (s.Type == Enums.ShowType.Concert))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
                     }
-                    else if (Request["type"].Equals("Festival"))
+                    else if (Request["type"].Equals("festival"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Active) && (s.Type == Enums.ShowType.Festival))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
 
                     }
-                    else if (Request["type"].Equals("Cinema"))
+                    else if (Request["type"].Equals("cinema"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Active) && (s.Type == Enums.ShowType.Cinema))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
 
                     }
-                    else if (Request["type"].Equals("Theatre"))
+                    else if (Request["type"].Equals("theatre"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Active) && (s.Type == Enums.ShowType.Theatre))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
 
                     }
                 }
-                else if (Request["availability"].Equals("neavailable"))
+                else if (Request["availability"].Equals("available"))
                 {
-                    if (Request["type"].Equals("Concert"))
+                    if (Request["type"].Equals("concert"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Inactive) && (s.Type == Enums.ShowType.Concert))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
                     }
-                    else if (Request["type"].Equals("Festival"))
+                    else if (Request["type"].Equals("festival"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Inactive) && (s.Type == Enums.ShowType.Festival))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
 
                     }
-                    else if (Request["type"].Equals("Cinema"))
+                    else if (Request["type"].Equals("cinema"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Inactive) && (s.Type == Enums.ShowType.Cinema))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
 
                     }
-                    else if (Request["type"].Equals("Theatre"))
+                    else if (Request["type"].Equals("theatre"))
                     {
-                        foreach (Show s in shows)
+                        foreach (Show s in Database.shows)
                         {
                             if ((s.Status == Enums.ShowStatus.Inactive) && (s.Type == Enums.ShowType.Theatre))
                             {
-                                filtrirane_shows.Add(s);
+                                filtered_shows.Add(s);
                             }
                         }
 
@@ -213,45 +329,45 @@ namespace Projekat.Controllers
             }
             else if ((!Request["type"].Equals("")) && (Request["availability"].Equals("")))
             {
-                if (Request["type"].Equals("Concert"))
+                if (Request["type"].Equals("concert"))
                 {
-                    foreach (Show s in shows)
+                    foreach (Show s in Database.shows)
                     {
                         if (s.Type == Enums.ShowType.Concert)
                         {
-                            filtrirane_shows.Add(s);
+                            filtered_shows.Add(s);
                         }
                     }
                 }
-                else if (Request["type"].Equals("Festival"))
+                else if (Request["type"].Equals("festival"))
                 {
-                    foreach (Show s in shows)
+                    foreach (Show s in Database.shows)
                     {
                         if (s.Type == Enums.ShowType.Festival)
                         {
-                            filtrirane_shows.Add(s);
+                            filtered_shows.Add(s);
                         }
                     }
 
                 }
-                else if (Request["type"].Equals("Cinema"))
+                else if (Request["type"].Equals("cinema"))
                 {
-                    foreach (Show s in shows)
+                    foreach (Show s in Database.shows)
                     {
                         if (s.Type == Enums.ShowType.Cinema)
                         {
-                            filtrirane_shows.Add(s);
+                            filtered_shows.Add(s);
                         }
                     }
 
                 }
-                else if (Request["type"].Equals("Theatre"))
+                else if (Request["type"].Equals("theatre"))
                 {
-                    foreach (Show s in shows)
+                    foreach (Show s in Database.shows)
                     {
                         if (s.Type == Enums.ShowType.Theatre)
                         {
-                            filtrirane_shows.Add(s);
+                            filtered_shows.Add(s);
                         }
                     }
 
@@ -263,34 +379,34 @@ namespace Projekat.Controllers
             {
                 if (Request["availability"].Equals("available"))
                 {
-                    foreach (Show s in shows)
+                    foreach (Show s in Database.shows)
                     {
                         if (s.Status == Enums.ShowStatus.Active)
                         {
-                            filtrirane_shows.Add(s);
+                            filtered_shows.Add(s);
                         }
                     }
                 }
-                else if (Request["availability"].Equals("neavailable"))
+                else if (Request["availability"].Equals("unavailable"))
                 {
-                    foreach (Show s in shows)
+                    foreach (Show s in Database.shows)
                     {
                         if (s.Status == Enums.ShowStatus.Inactive)
                         {
-                            filtrirane_shows.Add(s);
+                            filtered_shows.Add(s);
                         }
                     }
                 }
             }
 
-            ViewBag.shows = filtrirane_shows;
+            ViewBag.shows = filtered_shows;
             return View("~/Views/Shows/ShowShows.cshtml");
         }
 
 
-        public ActionResult PrikaziManifestaciju()
+        public ActionResult ShowShow()
         {
-            string naziv = Request["ID"];
+            Database.ReadData();
             List<Show> shows = Database.shows;
             foreach (Show s in shows)
             {
@@ -299,7 +415,7 @@ namespace Projekat.Controllers
                     ViewBag.showShows = s;
                 }
             }
-            return View("~/Views/Shows/ShowShows.cshtml");
+            return View("~/Views/Shows/ShowShow.cshtml");
         }
     }
 }

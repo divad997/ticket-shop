@@ -21,9 +21,9 @@ namespace Projekat.Models
 
         public Role Role { get; set; }
 
-        List<Ticket> Tickets { get; set; }
+      //  List<Ticket> Tickets { get; set; }
 
-        List<Show> Shows { get; set; }
+     //   List<Show> Shows { get; set; }
 
         public int Points { get; set; }
 
@@ -35,7 +35,7 @@ namespace Projekat.Models
 
         }
 
-        public User(string user, string pass, string name, string surname, DateTime birth, Role role, List<Ticket> tickets, List<Show> shows, int points, UserType type)
+        public User(string user, string pass, string name, string surname, DateTime birth, Role role/*, List<Ticket> tickets, List<Show> shows*/, int points, UserType type)
         {
             Username = user;
             Password = pass;
@@ -43,8 +43,8 @@ namespace Projekat.Models
             Surname = surname;
             Birthday = birth;
             Role = role;
-            Tickets = tickets;
-            Shows = shows;
+           // Tickets = tickets;
+            //Shows = shows;
             Points = points;
             Type = type;
         }

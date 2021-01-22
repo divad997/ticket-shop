@@ -143,16 +143,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\shows.xml" />
-    <Content Include="App_Data\users.xml" />
+    <Content Include="App_Data\Images\barber.jpg" />
+    <Content Include="App_Data\Images\exit.jpg" />
+    <Content Include="App_Data\Images\theweeknd.jpg" />
+    <Content Include="App_Data\Images\twotowers.jpg" />
     <Content Include="Content\background.jpg" />
+    <Content Include="Content\background1.jpg" />
+    <Content Include="Content\barber.jpg" />
     <Content Include="Content\basic.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\concert-ticket.png" />
+    <Content Include="Content\error.css" />
+    <Content Include="Content\exit.jpg" />
     <Content Include="Content\Home.css" />
+    <Content Include="Content\theweeknd.jpg" />
+    <Content Include="Content\twotowers.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -222,14 +230,9 @@
     <Content Include="Views\Seller\AllComments.cshtml" />
     <Content Include="Views\Seller\ApproveComment.cshtml" />
     <Content Include="Views\Seller\NoCommentsOnHold.cshtml" />
+    <Content Include="Views\Seller\ShowTickets.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Images\" />
-    <Folder Include="Views\Buyers\" />
-    <Folder Include="Views\Login\" />
-    <Folder Include="Views\Register\" />
-    <Folder Include="Views\Show\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

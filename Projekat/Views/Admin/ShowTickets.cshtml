@@ -39,8 +39,8 @@
                 <option value="35000">35000</option>
                 <option value="100000">100000</option>
             </select>
-            &nbsp; Od: &nbsp; <input type="date" name="datumfrom" min="2020-09-23" max="2020-12-31" value="" required />
-            &nbsp; Do: &nbsp;<input type="date" name="datumto" min="2020-09-23" max="2020-12-31" value="" required />
+            &nbsp; Od: &nbsp; <input type="date" name="datefrom" min="2020-09-23" max="2025-12-31" value="" required />
+            &nbsp; Do: &nbsp;<input type="date" name="dateto" min="2020-09-23" max="2025-12-31" value="" required />
             &nbsp;<input type="submit" value="Search" />
         </form>
     </div>
@@ -54,7 +54,7 @@
             </select>
             &nbsp; <select name="sortBy">
                 <option value="name">Name</option>
-                <option value="dateITName">Date and Time</option>
+                <option value="dateITime">Date and Time</option>
                 <option value="price">Price</option>
             </select>
             &nbsp;<input type="submit" value="Sort" />
@@ -85,8 +85,8 @@
             <th>Start</th>
             <th>Duration</th>
             <th>Total Price</th>
-            <th>Kolicina</th>
-            <th>Tip karte</th>
+            <th>Amount</th>
+            <th>Ticket Type</th>
 
         </tr>
         @foreach (var t in ViewBag.tickets)
@@ -98,7 +98,7 @@
                 <td>@t.Show.Duration</td>
                 <td>@t.TotalPrice</td>
                 <td>@t.Amount</td>
-                <td>@t.Type</td>
+                <td>@t.TicketType</td>
             </tr>
         }
     </table>

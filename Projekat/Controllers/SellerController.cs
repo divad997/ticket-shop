@@ -56,7 +56,7 @@ namespace Projekat.Controllers
             return View("~/Views/Seller/MyProfile.cshtml");
         }
 
-        public ActionResult DodajManifestaciju()
+        public ActionResult AddShow()
         {
             return View("~/Views/Seller/AddShow.cshtml");
         }
@@ -99,7 +99,7 @@ namespace Projekat.Controllers
                     return View("~/Views/Seller/ShowExist.cshtml");
                 }
             }
-            Show show = new Show(Request["naziv"], type, Int32.Parse(Request["brojMesta"]), DateTime.Parse(Request["datum"]), float.Parse(Request["cena"]), Enums.ShowStatus.Inactive, ad, filename);
+            Show show = new Show(Request["naziv"], type, Int32.Parse(Request["brojMesta"]), DateTime.Parse(Request["date"]), float.Parse(Request["price"]), Enums.ShowStatus.Inactive, ad, filename);
             Database.showshold.Add(show);
 
             
@@ -126,7 +126,7 @@ namespace Projekat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(string name, string number, string date, string duration, string city, string street, string zipcode, string cena)
+        public ActionResult Edit(string name, string number, string date, string duration, string city, string street, string zipcode, string price)
         {
             Database.ReadData();
 
@@ -171,9 +171,9 @@ namespace Projekat.Controllers
             {
                 show.Address.ZipCode = Int32.Parse(zipcode);
             }
-            if (!cena.Equals(""))
+            if (!price.Equals(""))
             {
-                show.Price = Int32.Parse(cena);
+                show.Price = Int32.Parse(price);
             }
 
             Database.shows.Add(show);
@@ -188,7 +188,7 @@ namespace Projekat.Controllers
         public ActionResult ShowTicketsView()
         {
             Database.ReadData();
-            ViewBag.karte = Database.tickets;
+            ViewBag.tickets = Database.tickets;
             return View("~/Views/Seller/ShowTickets.cshtml");
         }
 
@@ -244,7 +244,7 @@ namespace Projekat.Controllers
                     sortedTickets = allTickets.OrderByDescending(o => o.Show.Name).ToList();
                 }
             }
-            else if (Request["sortBy"].Equals("dateITName"))
+            else if (Request["sortBy"].Equals("dateITime"))
             {
                 if (Request["sortType"].Equals("ascending"))
                 {
@@ -268,7 +268,7 @@ namespace Projekat.Controllers
                     sortedTickets = allTickets.OrderByDescending(o => o.TotalPrice).ToList();
                 }
             }
-            ViewBag.karte = sortedTickets;
+            ViewBag.tickets = sortedTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
 
@@ -413,7 +413,7 @@ namespace Projekat.Controllers
                 }
             }
 
-            ViewBag.karte = filteredTickets;
+            ViewBag.tickets = filteredTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
 

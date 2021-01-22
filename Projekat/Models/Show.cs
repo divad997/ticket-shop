@@ -64,7 +64,11 @@ namespace Projekat.Models
                     i++;
                 }
             }
-            value = value / i;
+            if(i != 0)
+            {
+                value = value / i;
+                return value;
+            }
             return value;
         }
     }

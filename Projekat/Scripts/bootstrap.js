@@ -48,16 +48,16 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   function transitionEnd() {
     var el = document.createElement('bootstrap')
 
-    var transEndEventNames = {
+    var transEndEventimes = {
       'WebkitTransition' : 'webkitTransitionEnd'
     , 'MozTransition'    : 'transitionend'
     , 'OTransition'      : 'oTransitionEnd otransitionend'
     , 'transition'       : 'transitionend'
     }
 
-    for (var name in transEndEventNames) {
+    for (var name in transEndEventimes) {
       if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name] }
+        return { end: transEndEventimes[name] }
       }
     }
   }
@@ -67,7 +67,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var called = false, $el = this
     $(this).one($.support.transition.end, function () { called = true })
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
-    setTNameout(callback, duration)
+    setTimeout(callback, duration)
     return this
   }
 
@@ -223,7 +223,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     $el[val](data[state] || this.options[state])
 
     // push to event loop to allow forms to submit
-    setTNameout(function () {
+    setTimeout(function () {
       state == 'loadingText' ?
         $el.addClass(d).attr(d, d) :
         $el.removeClass(d).removeAttr(d);
@@ -427,7 +427,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
           $next.removeClass([type, direction].join(' ')).addClass('active')
           $active.removeClass(['active', direction].join(' '))
           that.sliding = false
-          setTNameout(function () { that.$element.trigger('slid') }, 0)
+          setTimeout(function () { that.$element.trigger('slid') }, 0)
         })
         .emulateTransitionEnd(600)
     } else {
@@ -1116,7 +1116,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     this.type       =
     this.options    =
     this.enabled    =
-    this.tNameout    =
+    this.timeout    =
     this.hoverState =
     this.$element   = null
 
@@ -1194,13 +1194,13 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
-    clearTNameout(self.tNameout)
+    clearTimeout(self.timeout)
 
     self.hoverState = 'in'
 
     if (!self.options.delay || !self.options.delay.show) return self.show()
 
-    self.tNameout = setTNameout(function () {
+    self.timeout = setTimeout(function () {
       if (self.hoverState == 'in') self.show()
     }, self.options.delay.show)
   }
@@ -1209,13 +1209,13 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
 
-    clearTNameout(self.tNameout)
+    clearTimeout(self.timeout)
 
     self.hoverState = 'out'
 
     if (!self.options.delay || !self.options.delay.hide) return self.hide()
 
-    self.tNameout = setTNameout(function () {
+    self.timeout = setTimeout(function () {
       if (self.hoverState == 'out') self.hide()
     }, self.options.delay.hide)
   }
@@ -1931,7 +1931,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
   }
 
   Affix.prototype.checkPositionWithEventLoop = function () {
-    setTNameout($.proxy(this.checkPosition, this), 1)
+    setTimeout($.proxy(this.checkPosition, this), 1)
   }
 
   Affix.prototype.checkPosition = function () {

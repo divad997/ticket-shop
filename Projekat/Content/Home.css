@@ -1,6 +1,6 @@
 ﻿body{
     text-decoration:wavy;
-	background-image: url("background.jpg");
+	background-image: url("background1.jpg");
     background-position:top;
     background-size: cover;
     
@@ -23,7 +23,7 @@ h1{
 
 .link {
     text-decoration: underline;
-    color: lightblue;
+    color: white;
     font-size: larger;
 }
 .link:hover{
@@ -49,3 +49,5 @@ img {
     height:auto;
     align-content:center;
 }
+
+

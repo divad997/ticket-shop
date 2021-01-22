@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
     <script>
         function submitResult() {
-            if (confirm("Are you sure you want to confirm the purchase: \nAmount: @ViewBag.ticketnumber \nDiscount:@ViewBag.discount % \nCena:@ViewBag.price \nTip:@ViewBag.type") == false) {
+            if (confirm("Are you sure you want to confirm the purchase: \nAmount: @ViewBag.ticketnumber \nDiscount:@ViewBag.discount % \nPrice:@ViewBag.price \nTip:@ViewBag.type") == false) {
                 return false;
             } else {
                 return true;

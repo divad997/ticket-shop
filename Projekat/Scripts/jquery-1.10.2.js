@@ -432,7 +432,7 @@ jQuery.extend({
 
 		// Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
 		if ( !document.body ) {
-			return setTNameout( jQuery.ready );
+			return setTimeout( jQuery.ready );
 		}
 
 		// Remember that the DOM is ready
@@ -901,7 +901,7 @@ jQuery.extend({
 	},
 
 	now: function() {
-		return ( new Date() ).getTName();
+		return ( new Date() ).getTime();
 	},
 
 	// A method for quickly swapping in/out CSS properties to get correct calculations.
@@ -938,7 +938,7 @@ jQuery.ready.promise = function( obj ) {
 		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
 		if ( document.readyState === "complete" ) {
 			// Handle it asynchronously to allow scripts the opportunity to delay ready
-			setTNameout( jQuery.ready );
+			setTimeout( jQuery.ready );
 
 		// Standards-based browsers support DOMContentLoaded
 		} else if ( document.addEventListener ) {
@@ -973,7 +973,7 @@ jQuery.ready.promise = function( obj ) {
 							// http://javascript.nwbox.com/IEContentLoaded/
 							top.doScroll("left");
 						} catch(e) {
-							return setTNameout( doScrollCheck, 50 );
+							return setTimeout( doScrollCheck, 50 );
 						}
 
 						// detach all dom ready events
@@ -1599,7 +1599,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// qSa(:focus) reports false when true (Chrome 21)
 	// We allow this because of a bug in IE8/9 that throws an error
 	// whenever `document.activeElement` is accessed on an iframe
-	// So, we allow :focus to pass through QSA all the tName to avoid the IE error
+	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See http://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
 
@@ -2920,7 +2920,7 @@ function select( selector, context, results, seed ) {
 	return results;
 }
 
-// One-tName assignments
+// One-time assignments
 
 // Sort stability
 support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
@@ -3011,7 +3011,7 @@ function createOptions( options ) {
  *			the callback list behaves or a more traditional option object
  *
  * By default a callback list will act like an event callback list and can be
- * "fired" multiple tNames.
+ * "fired" multiple times.
  *
  * Possible options:
  *
@@ -3332,7 +3332,7 @@ jQuery.extend({
 });
 jQuery.support = (function( support ) {
 
-	var all, a, input, select, fragment, opt, eventName, isSupported, i,
+	var all, a, input, select, fragment, opt, eventime, isSupported, i,
 		div = document.createElement("div");
 
 	// Setup
@@ -3461,9 +3461,9 @@ jQuery.support = (function( support ) {
 	// Support: IE<9 (lack submit/change bubble), Firefox 17+ (lack focusin event)
 	// Beware of CSP restrictions (https://developer.mozilla.org/en/Security/CSP)
 	for ( i in { submit: true, change: true, focusin: true }) {
-		div.setAttribute( eventName = "on" + i, "t" );
+		div.setAttribute( eventime = "on" + i, "t" );
 
-		support[ i + "Bubbles" ] = eventName in window || div.attributes[ eventName ].expando === false;
+		support[ i + "Bubbles" ] = eventime in window || div.attributes[ eventime ].expando === false;
 	}
 
 	div.style.backgroundClip = "content-box";
@@ -4013,14 +4013,14 @@ jQuery.fn.extend({
 	},
 	// Based off of the plugin by Clint Helfers, with permission.
 	// http://blindsignals.com/index.php/2009/07/jquery-delay/
-	delay: function( tName, type ) {
-		tName = jQuery.fx ? jQuery.fx.speeds[ tName ] || tName : tName;
+	delay: function( time, type ) {
+		time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
 		type = type || "fx";
 
 		return this.queue( type, function( next, hooks ) {
-			var tNameout = setTNameout( next, tName );
+			var timeout = setTimeout( next, time );
 			hooks.stop = function() {
-				clearTNameout( tNameout );
+				clearTimeout( timeout );
 			};
 		});
 	},
@@ -5222,7 +5222,7 @@ jQuery.event = {
 	},
 
 	// Includes some event props shared by KeyEvent and MouseEvent
-	props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target tNameStamp view which".split(" "),
+	props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
 
 	fixHooks: {},
 
@@ -5398,8 +5398,8 @@ jQuery.Event = function( src, props ) {
 		jQuery.extend( this, props );
 	}
 
-	// Create a tNamestamp if incoming event doesn't have one
-	this.tNameStamp = src && src.tNameStamp || jQuery.now();
+	// Create a timestamp if incoming event doesn't have one
+	this.timeStamp = src && src.timeStamp || jQuery.now();
 
 	// Mark it as fixed
 	this[ jQuery.expando ] = true;
@@ -5452,7 +5452,7 @@ jQuery.Event.prototype = {
 	}
 };
 
-// Create mouseenter/leave events using mouseover/out and event-tName checks
+// Create mouseenter/leave events using mouseover/out and event-time checks
 jQuery.each({
 	mouseenter: "mouseover",
 	mouseleave: "mouseout"
@@ -5536,7 +5536,7 @@ if ( !jQuery.support.changeBubbles ) {
 			if ( rformElems.test( this.nodeName ) ) {
 				// IE doesn't fire change on a check/radio until blur; trigger it on click
 				// after a propertychange. Eat the blur-change in special.change.handle.
-				// This still fires onchange a second tName for check/radio after blur.
+				// This still fires onchange a second time for check/radio after blur.
 				if ( this.type === "checkbox" || this.type === "radio" ) {
 					jQuery.event.add( this, "propertychange._change", function( event ) {
 						if ( event.originalEvent.propertyName === "checked" ) {
@@ -6010,7 +6010,7 @@ function createSafeFragment( document ) {
 }
 
 var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|" +
-		"header|hgroup|mark|meter|nav|output|progress|section|summary|tName|video",
+		"header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",
 	rinlinejQuery = / jQuery\d+="(?:null|\d+)"/g,
 	rnoshimcache = new RegExp("<(?:" + nodeNames + ")[\\s/>]", "i"),
 	rleadingWhitespace = /^\s+/,
@@ -7165,7 +7165,7 @@ if ( window.getComputedStyle ) {
 
 			// Remember the original values
 			left = style.left;
-			rs = elem.runtNameStyle;
+			rs = elem.runtimeStyle;
 			rsLeft = rs && rs.left;
 
 			// Put in the new values to get a computed value out
@@ -7810,7 +7810,7 @@ jQuery.extend({
 		async: true,
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		/*
-		tNameout: 0,
+		timeout: 0,
 		data: null,
 		dataType: null,
 		username: null,
@@ -7904,8 +7904,8 @@ jQuery.extend({
 			cacheURL,
 			// Response headers as string
 			responseHeadersString,
-			// tNameout handle
-			tNameoutTNamer,
+			// timeout handle
+			timeoutTimer,
 
 			// To know if global events are to be dispatched
 			fireGlobals,
@@ -8138,11 +8138,11 @@ jQuery.extend({
 			if ( fireGlobals ) {
 				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
 			}
-			// TNameout
-			if ( s.async && s.tNameout > 0 ) {
-				tNameoutTNamer = setTNameout(function() {
-					jqXHR.abort("tNameout");
-				}, s.tNameout );
+			// Timeout
+			if ( s.async && s.timeout > 0 ) {
+				timeoutTimer = setTimeout(function() {
+					jqXHR.abort("timeout");
+				}, s.timeout );
 			}
 
 			try {
@@ -8172,9 +8172,9 @@ jQuery.extend({
 			// State is "done" now
 			state = 2;
 
-			// Clear tNameout if it exists
-			if ( tNameoutTNamer ) {
-				clearTNameout( tNameoutTNamer );
+			// Clear timeout if it exists
+			if ( timeoutTimer ) {
+				clearTimeout( timeoutTimer );
 			}
 
 			// Dereference transport for early garbage collection
@@ -8775,7 +8775,7 @@ if ( xhrSupported ) {
 									// can do given current implementations)
 									if ( !status && s.isLocal && !s.crossDomain ) {
 										status = responses.text ? 200 : 404;
-									// IE - #1450: sometNames returns 1223 when it should be 204
+									// IE - #1450: sometimes returns 1223 when it should be 204
 									} else if ( status === 1223 ) {
 										status = 204;
 									}
@@ -8799,7 +8799,7 @@ if ( xhrSupported ) {
 					} else if ( xhr.readyState === 4 ) {
 						// (IE6 & IE7) if it's in cache and has been
 						// retrieved directly we need to fire the callback
-						setTNameout( callback );
+						setTimeout( callback );
 					} else {
 						handle = ++xhrId;
 						if ( xhrOnUnloadAbort ) {
@@ -8825,7 +8825,7 @@ if ( xhrSupported ) {
 		}
 	});
 }
-var fxNow, tNamerId,
+var fxNow, timerId,
 	rfxtypes = /^(?:toggle|show|hide)$/,
 	rfxnum = new RegExp( "^(?:([+-])=|)(" + core_pnum + ")([a-z%]*)$", "i" ),
 	rrun = /queueHooks$/,
@@ -8883,7 +8883,7 @@ var fxNow, tNamerId,
 
 // Animations created synchronously will run synchronously
 function createFxNow() {
-	setTNameout(function() {
+	setTimeout(function() {
 		fxNow = undefined;
 	});
 	return ( fxNow = jQuery.now() );
@@ -8916,8 +8916,8 @@ function Animation( elem, properties, options ) {
 			if ( stopped ) {
 				return false;
 			}
-			var currentTName = fxNow || createFxNow(),
-				remaining = Math.max( 0, animation.startTName + animation.duration - currentTName ),
+			var currentTime = fxNow || createFxNow(),
+				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
 				// archaic crash bug won't allow us to use 1 - ( 0.5 || 0 ) (#12497)
 				temp = remaining / animation.duration || 0,
 				percent = 1 - temp,
@@ -8943,7 +8943,7 @@ function Animation( elem, properties, options ) {
 			opts: jQuery.extend( true, { specialEasing: {} }, options ),
 			originalProperties: properties,
 			originalOptions: options,
-			startTName: fxNow || createFxNow(),
+			startTime: fxNow || createFxNow(),
 			duration: options.duration,
 			tweens: [],
 			createTween: function( prop, end ) {
@@ -8992,7 +8992,7 @@ function Animation( elem, properties, options ) {
 		animation.opts.start.call( elem, animation );
 	}
 
-	jQuery.fx.tNamer(
+	jQuery.fx.timer(
 		jQuery.extend( tick, {
 			elem: elem,
 			anim: animation,
@@ -9348,7 +9348,7 @@ jQuery.fn.extend({
 		return this.each(function() {
 			var dequeue = true,
 				index = type != null && type + "queueHooks",
-				tNamers = jQuery.tNamers,
+				timers = jQuery.timers,
 				data = jQuery._data( this );
 
 			if ( index ) {
@@ -9363,16 +9363,16 @@ jQuery.fn.extend({
 				}
 			}
 
-			for ( index = tNamers.length; index--; ) {
-				if ( tNamers[ index ].elem === this && (type == null || tNamers[ index ].queue === type) ) {
-					tNamers[ index ].anim.stop( gotoEnd );
+			for ( index = timers.length; index--; ) {
+				if ( timers[ index ].elem === this && (type == null || timers[ index ].queue === type) ) {
+					timers[ index ].anim.stop( gotoEnd );
 					dequeue = false;
-					tNamers.splice( index, 1 );
+					timers.splice( index, 1 );
 				}
 			}
 
 			// start the next in the queue if the last step wasn't forced
-			// tNamers currently will call their complete callbacks, which will dequeue
+			// timers currently will call their complete callbacks, which will dequeue
 			// but only if they were gotoEnd
 			if ( dequeue || !gotoEnd ) {
 				jQuery.dequeue( this, type );
@@ -9388,7 +9388,7 @@ jQuery.fn.extend({
 				data = jQuery._data( this ),
 				queue = data[ type + "queue" ],
 				hooks = data[ type + "queueHooks" ],
-				tNamers = jQuery.tNamers,
+				timers = jQuery.timers,
 				length = queue ? queue.length : 0;
 
 			// enable finishing flag on private data
@@ -9402,10 +9402,10 @@ jQuery.fn.extend({
 			}
 
 			// look for any active animations, and finish them
-			for ( index = tNamers.length; index--; ) {
-				if ( tNamers[ index ].elem === this && tNamers[ index ].queue === type ) {
-					tNamers[ index ].anim.stop( true );
-					tNamers.splice( index, 1 );
+			for ( index = timers.length; index--; ) {
+				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
+					timers[ index ].anim.stop( true );
+					timers.splice( index, 1 );
 				}
 			}
 
@@ -9498,31 +9498,31 @@ jQuery.easing = {
 	}
 };
 
-jQuery.tNamers = [];
+jQuery.timers = [];
 jQuery.fx = Tween.prototype.init;
 jQuery.fx.tick = function() {
-	var tNamer,
-		tNamers = jQuery.tNamers,
+	var timer,
+		timers = jQuery.timers,
 		i = 0;
 
 	fxNow = jQuery.now();
 
-	for ( ; i < tNamers.length; i++ ) {
-		tNamer = tNamers[ i ];
-		// Checks the tNamer has not already been removed
-		if ( !tNamer() && tNamers[ i ] === tNamer ) {
-			tNamers.splice( i--, 1 );
+	for ( ; i < timers.length; i++ ) {
+		timer = timers[ i ];
+		// Checks the timer has not already been removed
+		if ( !timer() && timers[ i ] === timer ) {
+			timers.splice( i--, 1 );
 		}
 	}
 
-	if ( !tNamers.length ) {
+	if ( !timers.length ) {
 		jQuery.fx.stop();
 	}
 	fxNow = undefined;
 };
 
-jQuery.fx.tNamer = function( tNamer ) {
-	if ( tNamer() && jQuery.tNamers.push( tNamer ) ) {
+jQuery.fx.timer = function( timer ) {
+	if ( timer() && jQuery.timers.push( timer ) ) {
 		jQuery.fx.start();
 	}
 };
@@ -9530,14 +9530,14 @@ jQuery.fx.tNamer = function( tNamer ) {
 jQuery.fx.interval = 13;
 
 jQuery.fx.start = function() {
-	if ( !tNamerId ) {
-		tNamerId = setInterval( jQuery.fx.tick, jQuery.fx.interval );
+	if ( !timerId ) {
+		timerId = setInterval( jQuery.fx.tick, jQuery.fx.interval );
 	}
 };
 
 jQuery.fx.stop = function() {
-	clearInterval( tNamerId );
-	tNamerId = null;
+	clearInterval( timerId );
+	timerId = null;
 };
 
 jQuery.fx.speeds = {
@@ -9552,7 +9552,7 @@ jQuery.fx.step = {};
 
 if ( jQuery.expr && jQuery.expr.filters ) {
 	jQuery.expr.filters.animated = function( elem ) {
-		return jQuery.grep(jQuery.tNamers, function( fn ) {
+		return jQuery.grep(jQuery.timers, function( fn ) {
 			return elem === fn.elem;
 		}).length;
 	};

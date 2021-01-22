@@ -1,21 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "ShowBoughtTickets";
+    ViewBag.Title = "ShowTickets";
+}
+
+@{
+    ViewBag.Title = "ShowTickets";
 }
 
 <head>
     <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
 </head>
 <body>
-    <br />
-    <br />
-    <div class="link">
-        @Html.ActionLink(">>Home", "Index", "Buyer");
-    </div>
     <div>
-        <form method="post" action="~/Buyer/Search">
+        <form method="post" action="~/Seller/ShowTickets">
             <br />
-            Pretraži:
+            Search:
             <input type="text" placeholder="Search ticket" name="search_value" value="" required />
             <br />
             <br />
@@ -44,22 +43,22 @@
                 <option value="35000">35000</option>
                 <option value="100000">100000</option>
             </select>
-            &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2025-12-31" value="" required />
-            &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2025-12-31" value="" required />
+            &nbsp; From: &nbsp; <input type="date" name="datumFrom" min="2021-01-01" max="2025-12-31" value="" required />
+            &nbsp; To: &nbsp;<input type="date" name="datumTo" min="2021-01-01" max="2025-12-31" value="" required />
             &nbsp;<input type="submit" value="Search" />
         </form>
     </div>
     <br />
     <div>
         Sort search:
-        <form method="post" action="~/Buyer/Sort">
+        <form method="post" action="~/Seller/SortTickets">
             &nbsp; <select name="sortType">
                 <option value="ascending">Ascending</option>
                 <option value="descending">Descending</option>
             </select>
             &nbsp; <select name="sortBy">
-                <option value="Name">Name</option>
-                <option value="dateITime">Date and Time</option>
+                <option value="name">Name</option>
+                <option value="dateITime">Date and time</option>
                 <option value="price">Price</option>
             </select>
             &nbsp;<input type="submit" value="Sort" />
@@ -68,7 +67,7 @@
     <br />
     <div>
         Filter search:
-        <form method="post" action="~/Buyer/Filter">
+        <form method="post" action="~/Seller/FilterTickets">
             &nbsp;  <select name="type">
                 <option value="">Choose ticket type</option>
                 <option value="Regular">Regular</option>
@@ -77,8 +76,8 @@
             </select>
             &nbsp; <select name="status">
                 <option value="">Choose show status</option>
-                <option value="active">Active tickets</option>
-                <option value="inactive">Inactive tickets</option>
+                <option value="active">Available tickets</option>
+                <option value="inactive">Sold out tickets</option>
             </select>
             &nbsp; <input type="submit" value="Filter" />
         </form>
@@ -86,35 +85,29 @@
     <table>
         <tr>
             <th>ID:</th>
-            <th>Name</th>
+            <th>Show</th>
             <th>Date</th>
             <th>Duration</th>
-            <th>Total Price</th>
+            <th>Total price</th>
             <th>Amount</th>
             <th>Ticket type</th>
-            <th></th>
 
         </tr>
         @foreach (var t in ViewBag.tickets)
         {
             <tr>
                 <td>@t.Id</td>
-                <td>@t.Name</td>
+                <td>@t.Show</td>
                 <td>@t.Time</td>
                 <td>@t.Duration</td>
                 <td>@t.TotalPrice</td>
                 <td>@t.Amount</td>
                 <td>@t.TicketType</td>
-                <td>
-                    <form action="/Buyer/ReviewView" method="post">
-                        <input type="submit" value="Add Review" />
-                        <input type="hidden" value="@t.Show.Name" name="IDShow" />
-                    </form>
-                </td>
             </tr>
         }
     </table>
     <div class="link">
-        @Html.ActionLink(">>Home", "Index", "Buyer");
+        @Html.ActionLink("<<Home", "Index", "Seller");
     </div>
 </body>
+

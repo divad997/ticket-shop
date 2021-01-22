@@ -167,7 +167,7 @@ namespace Projekat.Controllers
             }
             else
             {
-                ViewBag.showKupovina = show;
+                ViewBag.showBuy = show;
                 ViewBag.seatnumber = show.NumberOfSeats;
                 return View("~/Views/Buyer/NoTickets.cshtml");
             }
@@ -321,7 +321,7 @@ namespace Projekat.Controllers
                 }
 
             }
-            ViewBag.karte = searchedTickets;
+            ViewBag.shows = searchedTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
         public ActionResult Sort()
@@ -343,7 +343,7 @@ namespace Projekat.Controllers
                     sortedTickets = allTickets.OrderByDescending(o => o.Show.Name).ToList();
                 }
             }
-            else if (Request["sortBy"].Equals("dateITName"))
+            else if (Request["sortBy"].Equals("dateITime"))
             {
                 if (Request["sortType"].Equals("ascending"))
                 {
@@ -367,7 +367,7 @@ namespace Projekat.Controllers
                     sortedTickets = allTickets.OrderByDescending(o => o.TotalPrice).ToList();
                 }
             }
-            ViewBag.karte = sortedTickets;
+            ViewBag.tickets = sortedTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
 
@@ -512,7 +512,7 @@ namespace Projekat.Controllers
                 }
             }
 
-            ViewBag.karte = filteredTickets;
+            ViewBag.tickets = filteredTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
 

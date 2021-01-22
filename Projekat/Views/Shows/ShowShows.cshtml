@@ -13,13 +13,14 @@
             <form method="post" action="~/Show/Search">
                 <br />
                 Search:
-                <input type="text" placeholder="Search" name="search_value" value="" required />
+                <input type="text" placeholder="Search" name="search_value" value=""/>
                 <br />
                 <br />
 
                 &nbsp;
-                <select name="priceFrom" required>
-                    <option value="" selected disabled hidden>Minimum price</option>
+                <select name="priceFrom">
+                    <option value="">Minimum price</option>
+                    <option value="0">0</option>
                     <option value="1000">1000</option>
                     <option value="2000">2000</option>
                     <option value="3000">3000</option>
@@ -32,8 +33,9 @@
                     <option value="10000">10000</option>
                 </select>
                 &nbsp;
-                <select name="priceTo" required>
-                    <option value="" selected disabled hidden>Maximum price</option>
+                <select name="priceTo">
+                    <option value="">Maximum price</option>
+                    <option value="0">0</option>
                     <option value="1000">1000</option>
                     <option value="2000">2000</option>
                     <option value="3000">3000</option>
@@ -45,8 +47,8 @@
                     <option value="9000">9000</option>
                     <option value="10000">10000</option>
                 </select>
-                &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2020-12-31" value="" required />
-                &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2020-12-31" value="" required />
+                &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2025-12-31" value="" />
+                &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2025-12-31" value="" />
                 &nbsp;<input type="submit" value="Search" />
             </form>
         </div>
@@ -74,12 +76,12 @@
             <form method="post" action="~/Show/Filter">
                 &nbsp;  <select name="type">
                     <option value="">Choose show type</option>
-                    <option value="concert">concert</option>
+                    <option value="concert">Concert</option>
                     <option value="festival">Festivals</option>
-                    <option value="theater">Theater</option>
+                    <option value="theatre">Theatre</option>
                     <option value="cinema">Cinema</option>
                 </select>
-                &nbsp; <select name="Availability">
+                &nbsp; <select name="availability">
                     <option value="">Choose availability </option>
                     <option value="available">Available</option>
                     <option value="unavailable">Unavailable</option>
@@ -103,9 +105,9 @@
                 <tr>
                     <td>
                         @s.Name <br />
-                        <form action="~/Manifestacije/PrikaziManifestaciju" method="post">
+                        <form action="~/Show/ShowShow" method="post">
                             <input type="hidden" name="ID" value="@s.Name" /><br />
-                            <input type="submit" value="Show show" />
+                            <input type="submit" value="Show" />
                         </form>
                     </td>
 

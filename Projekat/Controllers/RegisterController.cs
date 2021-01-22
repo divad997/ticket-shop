@@ -29,7 +29,7 @@ namespace Projekat.Controllers
             }
             else
             {
-                User us = new User(Request["username"], Request["password"], Request["name"], Request["lastname"], DateTime.Parse(Request["date"]), Enums.Role.Buyer, new List<Ticket>(), new List<Show>(), 0, new UserType("Bronze", 0, 10));
+                User us = new User(Request["username"], Request["password"], Request["name"], Request["lastname"], DateTime.Parse(Request["date"]), Enums.Role.Buyer, 0, new UserType("Bronze", 0, 10));
 
                 Database.users.Add(us);
                 Database.UpdateData();

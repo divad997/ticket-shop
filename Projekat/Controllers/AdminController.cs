@@ -62,7 +62,7 @@ namespace Projekat.Controllers
 
         public ActionResult AddSeller()
         {
-            return View("~/Views/Administrator/AddSeller.cshtml");
+            return View("~/Views/Admin/AddSeller.cshtml");
 
         }
         public ActionResult CreateSeller()
@@ -77,7 +77,7 @@ namespace Projekat.Controllers
             }
             else
             {
-                User us = new User(Request["username"], Request["password"], Request["name"], Request["lastname"], DateTime.Parse(Request["date"]), Enums.Role.Seller, new List<Ticket>(), new List<Show>(), 0, new UserType("Bronze", 0, 10));
+                User us = new User(Request["username"], Request["password"], Request["name"], Request["lastname"], DateTime.Parse(Request["date"]), Enums.Role.Seller, 0, new UserType("Bronze", 0, 10));
 
                 Database.users.Add(us);
                 Database.UpdateData();
@@ -93,7 +93,7 @@ namespace Projekat.Controllers
 
         public ActionResult ShowUsers()
         {
-            ViewBag.korisnici = Database.users;
+            ViewBag.users = Database.users;
             return View("~/Views/Admin/ShowUsers.cshtml");
         }
 
@@ -165,7 +165,7 @@ namespace Projekat.Controllers
 
             }
             ViewBag.users = sortedUsers.ToList();
-            return View("~/Views/Administrator/ShowUsers.cshtml");
+            return View("~/Views/Admin/ShowUsers.cshtml");
         }
         public ActionResult Filter()
         {
@@ -275,7 +275,7 @@ namespace Projekat.Controllers
                 }
 
             }
-            ViewBag.korisnici = filteredUsers;
+            ViewBag.users = filteredUsers;
             return View("~/Views/Admin/ShowUsers.cshtml");
 
         }
@@ -366,7 +366,7 @@ namespace Projekat.Controllers
                 }
 
             }
-            ViewBag.karte = searchedTickets;
+            ViewBag.tickets = searchedTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
         public ActionResult SortTickets()
@@ -386,7 +386,7 @@ namespace Projekat.Controllers
                     sortedTickets = allTickets.OrderByDescending(o => o.Show.Name).ToList();
                 }
             }
-            else if (Request["sortBy"].Equals("dateITName"))
+            else if (Request["sortBy"].Equals("dateITime"))
             {
                 if (Request["sortType"].Equals("ascending"))
                 {
@@ -410,7 +410,7 @@ namespace Projekat.Controllers
                     sortedTickets = allTickets.OrderByDescending(o => o.TotalPrice).ToList();
                 }
             }
-            ViewBag.karte = sortedTickets;
+            ViewBag.tickets = sortedTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
 
@@ -554,7 +554,7 @@ namespace Projekat.Controllers
                 }
             }
 
-            ViewBag.karte = filteredTickets;
+            ViewBag.tickets = filteredTickets;
             return View("~/Views/Buyer/ShowBoughtTickets.cshtml");
         }
 

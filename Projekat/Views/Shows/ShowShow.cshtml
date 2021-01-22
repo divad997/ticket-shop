@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/Content/Home.css" type="text/css" />
 </head>
 <body>
-    <h2>Detalji manifestacije</h2>
+    <h2>Show details</h2>
     <div>
         <table>
             <tr>
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 
-                <td @ViewBag.showShows.Name
+                <td>@ViewBag.showShows.Name</td>
                 <td>@ViewBag.showShows.Type</td>
                 <td>@ViewBag.showShows.Start</td>
                 <td>@ViewBag.showShows.Duration</td>
@@ -31,7 +31,7 @@
                 <td>@ViewBag.showShows.CalculateRating()</td>
 
 
-                <td><img alt="Show poster" src="~/Content/@ViewBag.showShows.Picture" /></td>
+                <td><img alt="Show poster" src=@ViewBag.showShows.Picture /></td>
 
             </tr>
         </table>

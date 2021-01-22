@@ -7,17 +7,17 @@ using System.Web.Mvc;
 
 namespace Projekat.Controllers
 {
-    public class UlogujSeController : Controller
+    public class LoginController : Controller
     {
         // GET: UlogujSe
         public ActionResult Index()
         {
-            return View("~/Views/HomePage/UlogujSe.cshtml");
+            return View("~/Views/Home/Login.cshtml");
         }
-        public ActionResult UlogujSe()
+        public ActionResult Login()
         {
             string name = Request["Username"];
-            //List<User> users = Server.ListaKorisnika();
+            
             string pass = Request["Password"];
             Database.ReadData();
 

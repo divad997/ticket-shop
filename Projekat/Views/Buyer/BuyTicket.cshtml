@@ -45,8 +45,8 @@
                     <option value="9000">9000</option>
                     <option value="10000">10000</option>
                 </select>
-                &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2020-12-31" value="" required />
-                &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2020-12-31" value="" required />
+                &nbsp; From: &nbsp; <input type="date" name="dateFrom" min="2020-09-23" max="2025-12-31" value="" required />
+                &nbsp; To: &nbsp;<input type="date" name="dateTo" min="2020-09-23" max="2025-12-31" value="" required />
                 &nbsp;<input type="submit" value="Search" />
             </form>
         </div>
@@ -73,7 +73,7 @@
             Filter search:
             <form method="post" action="~/Shows/Filter">
                 &nbsp;  <select name="type">
-                    <option value="">Choose manifestation type</option>
+                    <option value="">Choose show type</option>
                     <option value="concert">Concerts</option>
                     <option value="festivals">Festivals</option>
                     <option value="theater">Theater</option>
@@ -111,7 +111,7 @@
                     </td>
 
                     <td>@s.Type</td>
-                    <td>@s.Time</td>
+                    <td>@s.Start</td>
                     <td>@s.Duration</td>
                     <td>@s.Address.Street, @s.Address.City, @s.Address.ZipCode</td>
                     <td>@s.Price</td>
